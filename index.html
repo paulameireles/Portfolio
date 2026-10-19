@@ -1,114 +1,486 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  PORTFÓLIO · CIÊNCIA DE DADOS & IA · Paula
+  PORTFÓLIO CIÊNCIA DE DADOS & IA Paula
   ============================================================
   Camadas: HTML (conteúdo) + CSS (aparência, dentro de <style>) + JS (dentro de <script>).
   Tema inspirado em notebook Jupyter + gráficos do matplotlib (cores viridis).
 -->
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Paula · Ciência de Dados & IA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <style>
     /* ---- PALETA: fundo navy + acentos "viridis" (roxo→azul→teal→verde→amarelo) ---- */
-    :root{
-      --bg:#0C1120; --panel:#141B2D; --panel-2:#1B2438; --border:#26314A;
-      --text:#E8EEF5; --muted:#8A97A8;
-      --teal:#2DD4BF; --violet:#A371F7;
-      --v1:#440154; --v2:#3B528B; --v3:#21908C; --v4:#5DC863; --v5:#FDE725; /* viridis */
-      --green:#7EE787; --orange:#FFA657;
-      --mono:'JetBrains Mono',monospace;
-      --viridis:linear-gradient(90deg,#440154,#3B528B,#21908C,#5DC863,#FDE725);
+    :root {
+      --bg: #0C1120;
+      --panel: #141B2D;
+      --panel-2: #1B2438;
+      --border: #26314A;
+      --text: #E8EEF5;
+      --muted: #8A97A8;
+      --teal: #2DD4BF;
+      --violet: #A371F7;
+      --v1: #440154;
+      --v2: #3B528B;
+      --v3: #21908C;
+      --v4: #5DC863;
+      --v5: #FDE725;
+      /* viridis */
+      --green: #7EE787;
+      --orange: #FFA657;
+      --mono: 'JetBrains Mono', monospace;
+      --viridis: linear-gradient(90deg, #440154, #3B528B, #21908C, #5DC863, #FDE725);
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;
-      background-image:radial-gradient(700px 350px at 88% -6%,rgba(45,212,191,.08),transparent 70%),
-                       radial-gradient(600px 350px at -5% 6%,rgba(163,113,247,.09),transparent 70%);
-      background-attachment:fixed;-webkit-font-smoothing:antialiased}
-    a{color:var(--teal);text-decoration:none}
-    ::selection{background:rgba(45,212,191,.3)}
 
-    nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:4px;flex-wrap:wrap;
-      padding:12px 18px;background:rgba(12,17,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-    nav .logo{font-family:var(--mono);font-weight:700;margin-right:auto}
-    nav .logo .a{color:var(--teal)}
-    nav a{font-family:var(--mono);font-size:.85rem;color:var(--muted);padding:6px 11px;border-radius:6px;transition:.15s}
-    nav a:hover{color:var(--text);background:var(--panel-2)}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-    .wrap{max-width:900px;margin:0 auto;padding:0 22px 100px}
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      background-image: radial-gradient(700px 350px at 88% -6%, rgba(45, 212, 191, .08), transparent 70%),
+        radial-gradient(600px 350px at -5% 6%, rgba(163, 113, 247, .09), transparent 70%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased
+    }
+
+    a {
+      color: var(--teal);
+      text-decoration: none
+    }
+
+    ::selection {
+      background: rgba(45, 212, 191, .3)
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      padding: 12px 18px;
+      background: rgba(12, 17, 32, .85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    nav .logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      margin-right: auto
+    }
+
+    nav .logo .a {
+      color: var(--teal)
+    }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--muted);
+      padding: 6px 11px;
+      border-radius: 6px;
+      transition: .15s
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: var(--panel-2)
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 22px 100px
+    }
 
     /* ---- HERO: célula de notebook ---- */
-    header{padding:52px 0 34px}
-    .nb{max-width:700px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:12px;
-      overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5);animation:rise .55s ease both}
-    @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-    .cellbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel-2);border-bottom:1px solid var(--border)}
-    .cellbar .file{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
-    .cellbar .k{width:9px;height:9px;border-radius:50%;background:var(--v5)} /* "kernel" ligado */
-    .incell{display:flex;gap:14px;padding:16px 16px 6px}
-    .prompt-in{font-family:var(--mono);font-size:.82rem;color:var(--v2);white-space:nowrap;padding-top:2px}
-    pre{font-family:var(--mono);font-size:.88rem;line-height:1.7;overflow-x:auto;color:var(--text)}
-    .kw{color:#F778BA}.fn{color:var(--teal)}.str{color:var(--green)}.self{color:var(--orange)}.cm{color:var(--muted);font-style:italic}
-    .outcell{display:flex;gap:14px;padding:6px 16px 18px}
-    .prompt-out{font-family:var(--mono);font-size:.82rem;color:#F778BA;white-space:nowrap;padding-top:2px}
-    /* DataFrame renderizado */
-    .df{border-collapse:collapse;font-family:var(--mono);font-size:.8rem;opacity:0;transform:translateY(6px);
-      transition:opacity .5s ease,transform .5s ease}
-    .df.run{opacity:1;transform:none}
-    .df th,.df td{border:1px solid var(--border);padding:6px 12px;text-align:left;white-space:nowrap}
-    .df thead th{background:var(--panel-2);color:var(--teal);font-weight:700}
-    .df tbody th{background:var(--panel-2);color:var(--muted)} /* índice */
-    .df td{color:var(--text)}
+    header {
+      padding: 52px 0 34px
+    }
 
-    section{padding:34px 0;border-top:1px solid var(--border)}
-    h2{font-size:1.35rem;font-weight:600;margin-bottom:6px}
-    h2 .in{font-family:var(--mono);color:var(--v2);margin-right:10px;font-size:1rem}
-    .rule{height:3px;width:64px;border-radius:2px;background:var(--viridis);margin:8px 0 18px}
-    p{color:#C9D1D9}
+    .nb {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+      animation: rise .55s ease both
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .cellbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .cellbar .file {
+      font-family: var(--mono);
+      font-size: .8rem;
+      color: var(--muted)
+    }
+
+    .cellbar .k {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--v5)
+    }
+
+    /* "kernel" ligado */
+    .incell {
+      display: flex;
+      gap: 14px;
+      padding: 16px 16px 6px
+    }
+
+    .prompt-in {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: var(--v2);
+      white-space: nowrap;
+      padding-top: 2px
+    }
+
+    pre {
+      font-family: var(--mono);
+      font-size: .88rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      color: var(--text)
+    }
+
+    .kw {
+      color: #F778BA
+    }
+
+    .fn {
+      color: var(--teal)
+    }
+
+    .str {
+      color: var(--green)
+    }
+
+    .self {
+      color: var(--orange)
+    }
+
+    .cm {
+      color: var(--muted);
+      font-style: italic
+    }
+
+    .outcell {
+      display: flex;
+      gap: 14px;
+      padding: 6px 16px 18px
+    }
+
+    .prompt-out {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: #F778BA;
+      white-space: nowrap;
+      padding-top: 2px
+    }
+
+    /* DataFrame renderizado */
+    .df {
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: .8rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .5s ease, transform .5s ease
+    }
+
+    .df.run {
+      opacity: 1;
+      transform: none
+    }
+
+    .df th,
+    .df td {
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      text-align: left;
+      white-space: nowrap
+    }
+
+    .df thead th {
+      background: var(--panel-2);
+      color: var(--teal);
+      font-weight: 700
+    }
+
+    .df tbody th {
+      background: var(--panel-2);
+      color: var(--muted)
+    }
+
+    /* índice */
+    .df td {
+      color: var(--text)
+    }
+
+    section {
+      padding: 34px 0;
+      border-top: 1px solid var(--border)
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 6px
+    }
+
+    h2 .in {
+      font-family: var(--mono);
+      color: var(--v2);
+      margin-right: 10px;
+      font-size: 1rem
+    }
+
+    .rule {
+      height: 3px;
+      width: 64px;
+      border-radius: 2px;
+      background: var(--viridis);
+      margin: 8px 0 18px
+    }
+
+    p {
+      color: #C9D1D9
+    }
 
     /* ---- Gráfico de barras (competências) ---- */
-    .chart{font-family:var(--mono);font-size:.85rem;margin-top:4px}
-    .row{display:grid;grid-template-columns:180px 1fr;align-items:center;gap:12px;margin:9px 0}
-    .row .lab{color:var(--muted);text-align:right}
-    .track{background:var(--panel);border:1px solid var(--border);border-radius:5px;height:22px;overflow:hidden}
-    .barfill{height:100%;width:0;border-radius:4px;transition:width 1.1s cubic-bezier(.2,.8,.3,1)}
-    @media(max-width:560px){.row{grid-template-columns:120px 1fr}.row .lab{font-size:.78rem}}
+    .chart {
+      font-family: var(--mono);
+      font-size: .85rem;
+      margin-top: 4px
+    }
 
-    .label{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin:20px 0 8px}
-    .badges{display:flex;flex-wrap:wrap;gap:9px}
-    .badge{font-family:var(--mono);font-size:.83rem;padding:6px 12px;border-radius:7px;background:var(--panel);
-      border:1px solid var(--border);transition:.15s}
-    .badge:hover{border-color:var(--teal);transform:translateY(-2px)}
+    .row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin: 9px 0
+    }
+
+    .row .lab {
+      color: var(--muted);
+      text-align: right
+    }
+
+    .track {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      height: 22px;
+      overflow: hidden
+    }
+
+    .barfill {
+      height: 100%;
+      width: 0;
+      border-radius: 4px;
+      transition: width 1.1s cubic-bezier(.2, .8, .3, 1)
+    }
+
+    @media(max-width:560px) {
+      .row {
+        grid-template-columns: 120px 1fr
+      }
+
+      .row .lab {
+        font-size: .78rem
+      }
+    }
+
+    .label {
+      font-family: var(--mono);
+      font-size: .8rem;
+      color: var(--muted);
+      margin: 20px 0 8px
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: .83rem;
+      padding: 6px 12px;
+      border-radius: 7px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      transition: .15s
+    }
+
+    .badge:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px)
+    }
 
     /* célula markdown (expectativas) */
-    .md{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:8px;padding:18px 20px;color:#C9D1D9}
-    .md .h{font-family:var(--mono);color:var(--v4);font-size:.82rem;margin-bottom:8px}
+    .md {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--teal);
+      border-radius: 8px;
+      padding: 18px 20px;
+      color: #C9D1D9
+    }
+
+    .md .h {
+      font-family: var(--mono);
+      color: var(--v4);
+      font-size: .82rem;
+      margin-bottom: 8px
+    }
 
     /* cards de projeto com métrica */
-    .repos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .repo{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:18px;transition:.18s}
-    .repo:hover{border-color:var(--teal);transform:translateY(-3px)}
-    .repo .name{font-family:var(--mono);font-weight:700;color:var(--teal);font-size:.98rem}
-    .repo p{font-size:.9rem;margin:8px 0 12px}
-    .repo .metric{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px}
-    .repo .metric b{color:var(--v4);font-weight:500}
-    @media(max-width:600px){.repos{grid-template-columns:1fr}}
+    .repos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
 
-    .tl{list-style:none;margin-top:4px}
-    .tl li{padding:12px 0;border-bottom:1px dashed var(--border);display:flex;gap:14px;flex-wrap:wrap}
-    .tl .when{font-family:var(--mono);font-size:.82rem;color:var(--v4);min-width:120px}
+    .repo {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      transition: .18s
+    }
 
-    footer{border-top:1px solid var(--border);padding-top:26px;margin-top:10px;font-family:var(--mono);font-size:.88rem;color:var(--muted)}
-    footer .g{color:var(--green)}
-    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.df{opacity:1;transform:none}}
+    .repo:hover {
+      border-color: var(--teal);
+      transform: translateY(-3px)
+    }
+
+    .repo .name {
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--teal);
+      font-size: .98rem
+    }
+
+    .repo p {
+      font-size: .9rem;
+      margin: 8px 0 12px
+    }
+
+    .repo .metric {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .repo .metric b {
+      color: var(--v4);
+      font-weight: 500
+    }
+
+    @media(max-width:600px) {
+      .repos {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .tl {
+      list-style: none;
+      margin-top: 4px
+    }
+
+    .tl li {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap
+    }
+
+    .tl .when {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: var(--v4);
+      min-width: 120px
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 26px;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: .88rem;
+      color: var(--muted)
+    }
+
+    footer .g {
+      color: var(--green)
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .df {
+        opacity: 1;
+        transform: none
+      }
+    }
   </style>
 </head>
+
 <body>
   <nav>
     <span class="logo">paula<span class="a">.ipynb</span></span>
@@ -127,7 +499,7 @@
         <div class="incell">
           <span class="prompt-in">In [1]:</span>
           <!-- EDITE AQUI o código da célula, se quiser -->
-<pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+          <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
 
 perfil = pd.<span class="fn">DataFrame</span>({
     <span class="str">"nome"</span>:        [<span class="str">"Paula"</span>],
@@ -141,8 +513,24 @@ perfil</pre>
           <span class="prompt-out">Out[1]:</span>
           <div style="overflow-x:auto">
             <table class="df" id="df">
-              <thead><tr><th></th><th>nome</th><th>área</th><th>instituição</th><th>origem</th></tr></thead>
-              <tbody><tr><th>0</th><td>Paula</td><td>Ciência de Dados & IA</td><td>PUC Minas</td><td>Ciência da Computação → Psicologia</td></tr></tbody>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>nome</th>
+                  <th>área</th>
+                  <th>instituição</th>
+                  <th>origem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>0</th>
+                  <td>Paula</td>
+                  <td>Ciência de Dados & IA</td>
+                  <td>PUC Minas</td>
+                  <td>Ciência da Computação → Psicologia</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -151,23 +539,53 @@ perfil</pre>
 
     <!-- SOBRE -->
     <section id="sobre">
-      <h2><span class="in">In [2]:</span>sobre</h2><div class="rule"></div>
-      <p>Sou estudante de Ciência de Dados e Inteligência Artificial (CDIA) na PUC Minas, campus Praça da Liberdade, em Belo Horizonte. Venho da Psicologia e ainda antes da Ciência da Computação que foi onde me encantei com a área de Inteligencia artificial e dados. Enquanto ainda estava em computação tive o privilegio de trabalhar na Lett, na qual foi onde me apaixonei pela area na qual estou hoje. Escolhi este curso para dar um passo além: aprender a <b>construir</b> modelos e ferramentas que transformam dados em decisões.</p>  
+      <h2><span class="in">In [2]:</span>sobre</h2>
+      <div class="rule"></div>
+      <p>Sou estudante de Ciência de Dados e Inteligência Artificial (CDIA) na PUC Minas, campus Praça da Liberdade, em
+        Belo Horizonte. Venho da Psicologia e ainda antes da Ciência da Computação que foi onde me encantei com a área
+        de Inteligencia artificial e dados. Enquanto ainda estava em computação tive o privilegio de trabalhar na Lett,
+        na qual foi onde me apaixonei pela area na qual estou hoje. Escolhi este curso para dar um passo além: aprender
+        a <b>construir</b> modelos e ferramentas que transformam dados em decisões.</p>
     </section>
 
     <!-- SKILLS como gráfico de barras -->
     <section id="skills">
-      <h2><span class="in">In [3]:</span>skills.plot.barh()</h2><div class="rule"></div>
+      <h2><span class="in">In [3]:</span>skills.plot.barh()</h2>
+      <div class="rule"></div>
       <div class="chart">
         <!-- data-w = tamanho da barra (%). EDITE AQUI conforme sua realidade -->
-        <div class="row"><span class="lab">Python</span><div class="track"><div class="barfill" data-w="72%" style="background:var(--v5)"></div></div></div>
-        <div class="row"><span class="lab">pandas / NumPy</span><div class="track"><div class="barfill" data-w="66%" style="background:var(--v4)"></div></div></div>
-        <div class="row"><span class="lab">Análise de dados</span><div class="track"><div class="barfill" data-w="63%" style="background:var(--v4)"></div></div></div>
-        <div class="row"><span class="lab">Machine Learning</span><div class="track"><div class="barfill" data-w="48%" style="background:var(--v3)"></div></div></div>
-        <div class="row"><span class="lab">Git & GitHub</span><div class="track"><div class="barfill" data-w="55%" style="background:var(--v3)"></div></div></div>
-        <div class="row"><span class="lab">SQL</span><div class="track"><div class="barfill" data-w="40%" style="background:var(--v2)"></div></div></div>
+        <div class="row"><span class="lab">Python</span>
+          <div class="track">
+            <div class="barfill" data-w="75%" style="background:var(--v5)"></div>
+          </div>
+        </div>
+        <div class="row"><span class="lab">pandas / NumPy</span>
+          <div class="track">
+            <div class="barfill" data-w="66%" style="background:var(--v4)"></div>
+          </div>
+        </div>
+        <div class="row"><span class="lab">Análise de dados</span>
+          <div class="track">
+            <div class="barfill" data-w="63%" style="background:var(--v4)"></div>
+          </div>
+        </div>
+        <div class="row"><span class="lab">Machine Learning</span>
+          <div class="track">
+            <div class="barfill" data-w="48%" style="background:var(--v3)"></div>
+          </div>
+        </div>
+        <div class="row"><span class="lab">Git & GitHub</span>
+          <div class="track">
+            <div class="barfill" data-w="75%" style="background:var(--v3)"></div>
+          </div>
+        </div>
+        <div class="row"><span class="lab">SQL</span>
+          <div class="track">
+            <div class="barfill" data-w="40%" style="background:var(--v2)"></div>
+          </div>
+        </div>
       </div>
-      <div class="label">// interesses</div>
+      <div class="label">// Interesses</div>
       <div class="badges">
         <span class="badge">Aprendizado supervisionado</span>
         <span class="badge">Visualização de dados</span><span class="badge">IA aplicada</span>
@@ -176,49 +594,58 @@ perfil</pre>
       <div class="badges">
         <span class="badge">Olhar analítico</span><span class="badge">Comunicação</span>
         <span class="badge">Curiosidade</span><span class="badge">Resiliência</span>
-        <!-- EDITE AQUI -->
       </div>
     </section>
 
     <!-- EXPECTATIVAS (célula markdown) -->
     <section id="objetivos">
-      <h2><span class="in">In [4]:</span>expectativas para a graduação</h2><div class="rule"></div>
+      <h2><span class="in">In [4]:</span>expectativas para a graduação</h2>
+      <div class="rule"></div>
       <div class="md">
         <div class="h"># markdown</div>
-        <i>Minha expectativa para a graduação é conseguir ter muitas experiencias na área e achar a que mais combina comigo para aprender, e me tornar uma profissional mais capacitada e melhor no que faz. Gostaria de desenvolver tambem minhas habilidades em comunicação, liderança e pensamento analítico.</i>
+        <i>Minha expectativa para a graduação é conseguir ter muitas experiencias na área e achar a que mais combina
+          comigo para aprender, e me tornar uma profissional mais capacitada e melhor no que faz. Gostaria de
+          desenvolver tambem minhas habilidades em comunicação, liderança e pensamento analítico.</i>
       </div>
       <div class="label">// áreas que quero explorar</div>
       <div class="badges">
-        <span class="badge">People Analytics</span><span class="badge">Engenharia de ML</span>
+        <span class="badge">Analytics</span><span class="badge">Engenharia de ML</span>
         <span class="badge">Ciência de dados em produto</span><span class="badge">Pesquisa em IA</span>
       </div>
     </section>
 
     <!-- PROJETOS -->
     <section id="projetos">
-      <h2><span class="in">In [5]:</span>projetos</h2><div class="rule"></div>
+      <h2><span class="in">In [5]:</span>Projetos</h2>
+      <div class="rule"></div>
       <div class="repos">
-        <a class="repo" href="#"><!-- EDITE AQUI: link do repo -->
+        <a class="repo" href="https://github.com/paulameireles/Portfolio"><!-- EDITE AQUI: link do repo -->
           <span class="name">previsao-attrition</span>
           <p>People Analytics: prevendo o desligamento de colaboradores com machine learning.</p>
-          <span class="metric"><span>modelo: <b>[ex. Random Forest]</b></span><span>métrica: <b>[ex. F1 = 0.__]</b></span></span>
+          <span class="metric"><span>modelo: <b>[ex. Random Forest]</b></span><span>métrica: <b>[ex. F1 =
+                0.84]</b></span></span>
         </a>
         <a class="repo" href="#">
           <span class="name">projeto-astronomia</span>
-          <p>Próximo projeto: classificação com machine learningem dados astronomicos - ex.:identificação de estrelas pulsares(HTRU2).</p>
-          <span class="metric"><span>modelo: <b>[?]</b></span><span>métrica: <b>[?]</b></span></span>
+          <p>Próximo projeto: classificação com machine learningem dados astronomicos - ex.:identificação de estrelas
+            pulsares(HTRU2).</p>
+          <span class="metric"><span>modelo: <b>[?]</b></span><span>métrica: <b>não realizado ainda</b></span></span>
         </a>
       </div>
     </section>
 
     <!-- FORMAÇÃO -->
     <section id="formacao">
-      <h2><span class="in">In [6]:</span>formação</h2><div class="rule"></div>
+      <h2><span class="in">In [6]:</span>Formação</h2>
+      <div class="rule"></div>
       <ul class="tl">
-        <li><span class="when">em andamento</span><span><b>Ciência de Dados e Inteligência Artificial</b> — PUC Minas</span></li>
-        <li><span class="when">Incompleta</span><span><b>Psicologia</b> — foco em Psicologia Organizacional e People Analytics</span></li>
-        <li><span class="when">Completo</span><span><b>Certificação Intro to ML</b> —   Kaggle</span></li>
-        <li><span class="when">Completo</span><span><b>Certificação Intermediate Machine Learning</b> —   Kaggle</span></li>
+        <li><span class="when">em andamento</span><span><b>Ciência de Dados e Inteligência Artificial</b> — PUC
+            Minas</span></li>
+        <li><span class="when">6 períodos completos</span><span><b>Psicologia</b> — foco em Psicologia Organizacional e
+            People Analytics</span></li>
+        <li><span class="when">Completo</span><span><b>Certificação Intro to ML</b> — Kaggle</span></li>
+        <li><span class="when">Completo</span><span><b>Certificação Intermediate Machine Learning</b> — Kaggle</span>
+        </li>
         <li><span class="when">em andamento</span><span><b>CertificaçãoSQLBolt</b> — SQLBolt </span></li>
       </ul>
     </section>
@@ -231,13 +658,14 @@ perfil</pre>
   <script>
     /* 1) "Executa" a célula do topo: o DataFrame aparece com um pequeno atraso, como se rodasse. */
     const df = document.getElementById('df');
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ df.classList.add('run'); }
-    else { setTimeout(()=>df.classList.add('run'), 650); }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {df.classList.add('run');}
+    else {setTimeout(() => df.classList.add('run'), 650);}
 
     /* 2) Barras do gráfico enchem quando entram na tela ao rolar (IntersectionObserver). */
     const bars = document.querySelectorAll('.barfill');
-    const obs = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.style.width=e.target.dataset.w; }),{threshold:.4});
-    bars.forEach(b=>obs.observe(b));
+    const obs = new IntersectionObserver(es => es.forEach(e => {if (e.isIntersecting) e.target.style.width = e.target.dataset.w;}), {threshold: .4});
+    bars.forEach(b => obs.observe(b));
   </script>
 </body>
+
 </html>
